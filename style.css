@@ -422,3 +422,23 @@ footer a:hover { color: var(--color-secondary); }
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } /* -50% because we duplicated the items */
 }   
+
+/* ==========================================================================
+   Hide Netlify Badge / HUD
+   ========================================================================== */
+#nl-badge-frame,
+#nl-hud-frame,
+iframe[id^="nl-"],
+iframe[src*="netlify"],
+[data-netlify-site-id] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -9999 !important;
+}
