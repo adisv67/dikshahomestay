@@ -1,0 +1,424 @@
+/* === Variables & Reset === */
+:root {
+    --color-primary: #1f3a30;
+    --color-primary-light: #2c5546;
+    --color-secondary: #c98c5b;
+    --color-background: #f9f6f2;
+    --color-surface: #ffffff;
+    --color-text: #2d2d2d;
+    --color-text-light: #555555;
+    --color-border: #e5e0d8;
+    --color-wa: #25D366;
+    --color-wa-dark: #128C7E;
+    
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.12);
+    --shadow-cta: 0 4px 14px rgba(31, 58, 48, 0.3);
+    
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { 
+    scroll-behavior: smooth; 
+    max-width: 100%; 
+    overflow-x: hidden; 
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+    max-width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll caused by off-screen mobile menu */
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; transition: var(--transition); }
+ul { list-style: none; }
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+p { margin-bottom: 1rem; color: var(--color-text-light); }
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.section-padding { padding: 5rem 0; }
+.alt-bg { background-color: var(--color-surface); }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+/* === Header === */
+#header { position: sticky; top: 0; background: rgba(249, 246, 242, 0.95); backdrop-filter: blur(10px); z-index: 1000; transition: var(--transition); border-bottom: 1px solid var(--color-border); }
+.header-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
+.logo { display: flex; flex-direction: column; }
+.logo span { font-weight: 700; color: var(--color-primary); font-size: 1.3rem; }
+.logo small { font-size: 0.75rem; color: var(--color-secondary); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a { font-weight: 500; color: var(--color-text); position: relative; }
+.nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background-color: var(--color-secondary); transition: var(--transition); }
+.nav-links a:not(.nav-cta):hover::after, .nav-links a.active:not(.nav-cta)::after { width: 100%; }
+#menuToggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+#menuToggle span { width: 25px; height: 3px; background: var(--color-primary); transition: var(--transition); }
+
+/* === Buttons === */
+.btn-primary, .btn-wa, .btn-outline-light, .btn-text {
+    display: inline-block; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; text-align: center; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-size: 1rem;
+}
+.btn-primary { background-color: var(--color-primary); color: #fff; box-shadow: var(--shadow-cta); }
+.btn-primary:hover { background-color: var(--color-primary-light); transform: translateY(-3px); }
+.btn-wa { background-color: var(--color-wa); color: #fff; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4); }
+.btn-wa:hover { background-color: var(--color-wa-dark); transform: translateY(-3px); }
+.btn-outline-light { background-color: transparent; color: #fff; border-color: #fff; }
+.btn-outline-light:hover { background-color: #fff; color: var(--color-primary); transform: translateY(-3px); }
+.btn-text { color: var(--color-secondary); padding: 0.8rem 0; font-weight: 600; }
+.btn-text:hover { color: var(--color-primary); }
+
+/* === Hero === */
+.hero { position: relative; height: 85vh; min-height: 600px; display: flex; align-items: center; color: #fff; background: url('/Assets/Bhandardara-hero.jpeg') no-repeat center center/cover; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)); }
+.hero-content { position: relative; z-index: 2; max-width: 1164px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1.5rem; }
+.hero-badge { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; display: inline-block; color: #fff; }
+.hero h1, .hero h2 { color: #fff; }
+.hero h1 { margin-bottom: 0.5rem; }
+.hero h2 { font-weight: 500; font-size: 1.8rem; margin-bottom: 1.5rem; }
+.hero p { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 2rem; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
+.location-indicator { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 0; }
+
+.gradient-text {
+    background: linear-gradient(45deg, #d4af37, #eac086, #c98c5b); /* Gold to light gold to terracotta */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback */
+    display: inline-block;
+}
+
+/* === Highlights === */
+.highlights-section { margin-top: -4rem; position: relative; z-index: 3; padding: 0 1.5rem; }
+.highlights-grid { background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; text-align: center; }
+.highlight-card { padding: 1rem; border-right: 1px solid var(--color-border); font-weight: 500; }
+.highlight-card:last-child { border-right: none; }
+
+/* === About === */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+
+/* === Rooms === */
+.rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.room-card-mini { background: var(--color-background); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); border: 1px solid var(--color-border); }
+.room-card-mini:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.room-card-mini img { width: 100%; height: 220px; object-fit: cover; }
+.room-mini-content { padding: 1.5rem; }
+.room-perks { margin: 1rem 0; }
+.room-perks li { font-size: 0.9rem; color: var(--color-primary); font-weight: 500; }
+
+/* === Facilities === */
+.facilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
+.facility-card { background: var(--color-background); padding: 1.5rem; border-radius: var(--radius-md); text-align: center; transition: var(--transition); border: 1px solid var(--color-border); }
+.facility-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
+.facility-card .icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+/* === Why Us === */
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+.why-card { text-align: center; padding: 2rem 1rem; }
+.why-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* === Things to Do === */
+.things-grid-detailed { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 2rem; }
+.thing-card-detailed { background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); display: flex; flex-direction: column; }
+.thing-card-detailed:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.thing-card-detailed img { width: 100%; height: 220px; object-fit: cover; }
+.thing-card-detailed .content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.attraction-meta { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+.attraction-meta li { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--color-text); }
+.attraction-meta strong { color: var(--color-primary); }
+
+/* === Mid-Page CTA Banner === */
+.mid-cta-banner { background: var(--color-secondary); color: #fff; text-align: center; padding: 4rem 0; }
+.mid-cta-banner h2 { color: #fff; }
+.mid-cta-banner p { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2rem auto; }
+
+/* === Location === */
+.location-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+.location-map { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+.nearby-info { margin: 2rem 0; }
+.nearby-info h4 { color: var(--color-primary); margin-top: 1rem; }
+.nearby-info ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+
+/* === FAQ === */
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-question { width: 100%; background: none; border: none; padding: 1.5rem 0; text-align: left; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--color-primary); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.faq-question:hover { color: var(--color-secondary); }
+.faq-icon { font-size: 1.5rem; transition: transform 0.3s ease; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-answer p { padding-bottom: 1.5rem; color: var(--color-text-light); }
+
+/* === Contact === */
+.contact-container { text-align: center; max-width: 800px; }
+
+/* === Footer === */
+footer { background: #18241f; color: #fff; padding: 4rem 0 2rem 0; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+footer h3, footer h4 { color: #fff; }
+footer p, footer a { color: rgba(255,255,255,0.8); }
+footer ul li { margin-bottom: 0.5rem; }
+footer a:hover { color: var(--color-secondary); }
+.footer-bottom { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); }
+
+/* === Lightbox & Floating === */
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; padding: 2rem; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90%; max-height: 90vh; }
+.lightbox-close { position: absolute; top: 2rem; right: 2rem; color: #fff; font-size: 3rem; cursor: pointer; }
+.floating-whatsapp { position: fixed; bottom: 2rem; right: 2rem; background: var(--color-wa); color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; }
+#backToTop { position: fixed; bottom: 2rem; left: 2rem; background: var(--color-primary); color: #fff; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.5rem; display: none; z-index: 999; }
+#backToTop.visible { display: flex; justify-content: center; align-items: center; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* === Apple-Style Bento Grid (Rooms Page) === */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Left column is twice as wide as right */
+    grid-template-rows: 1fr 1fr;    /* Two rows */
+    gap: 1.5rem;
+    height: 700px; /* Gives the grid a nice tall viewport on desktop */
+}
+
+.bento-tile {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+}
+
+.bento-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.bento-tile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bento-tile:hover img {
+    transform: scale(1.05);
+}
+
+/* Large tile spans both rows on the left */
+.bento-large {
+    grid-row: span 2;
+}
+
+/* Medium tiles take up one row on the right */
+.bento-medium {
+    grid-row: span 1;
+}
+
+/* Overlay gradient for text readability */
+.bento-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+}
+
+.bento-content {
+    color: #fff;
+    max-width: 500px;
+}
+
+.bento-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bento-content h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.bento-large .bento-content h3 {
+    font-size: 2.5rem;
+}
+
+.bento-content p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1.5rem;
+}
+
+.bento-content .btn-text {
+    color: var(--color-secondary);
+}
+
+/* === Room Features Grid === */
+.room-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.room-feature-box {
+    background: var(--color-background);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.room-feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.room-feature-box h4 {
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+}
+
+/* === Gallery Bento Grid === */
+.gallery-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+    grid-auto-rows: 250px; /* Base height for tiles */
+    gap: 1.5rem;
+    grid-auto-flow: dense; /* Fixes the empty gap bug by packing items tightly */
+}
+
+.gallery-bento-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.gallery-bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.gallery-bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-bento-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Sizing Classes for Bento Effect */
+.gallery-large {
+    grid-column: span 2;
+    grid-row: span 2; /* Takes up a 2x2 square */
+}
+
+.gallery-tall {
+    grid-row: span 2; /* Takes up 1 column, 2 rows */
+}
+
+.gallery-wide {
+    grid-column: span 2; /* Takes up 2 columns, 1 row */
+}
+/* === Facilities Marquee === */
+.facilities-marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1rem 0;
+    position: relative;
+    /* Creates a nice fade on the left and right edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.facilities-marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: marquee 30s linear infinite; /* 30s controls the speed */
+}
+
+/* Pauses the marquee when user hovers over it */
+.facilities-marquee-container:hover .facilities-marquee-track {
+    animation-play-state: paused;
+}
+
+.facility-marquee-item {
+    background: var(--color-background);
+    padding: 1rem 1.8rem;
+    border-radius: 50px; /* Pill shape */
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-card);
+}
+
+.facility-marquee-item:hover {
+    transform: scale(1.05);
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.facility-marquee-item .icon {
+    font-size: 1.4rem;
+}
+
+/* The animation that moves the track */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* -50% because we duplicated the items */
+}   

@@ -1,0 +1,129 @@
+/* === Mobile Navigation === */
+/* Trigger menu earlier to prevent tablet overlap */
+@media (max-width: 1024px) {
+    .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 70%; height: 100vh;
+        background: var(--color-surface);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transition: right 0.4s ease-in-out;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        z-index: 1001;
+    }
+    
+    .nav-links.active { right: 0; }
+    
+    #menuToggle { display: flex; z-index: 1002; }
+    #menuToggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    #menuToggle.active span:nth-child(2) { opacity: 0; }
+    #menuToggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    
+    .about-grid, .location-grid, .contact-page-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .facilities-info { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    
+    .hero-cta { justify-content: center; }
+}
+
+@media (max-width: 768px) {
+    .hero { 
+        height: auto;
+        min-height: 90vh; /* Taller hero so buttons are visible */
+        padding: 8rem 0 6rem 0; /* Adds top and bottom spacing */
+        align-items: center; 
+    }
+    .hero h2 { font-size: 1.4rem; }
+    .section-padding { padding: 3rem 0; }
+    
+    /* Prevents the white box from covering the buttons */
+    .highlights-section { 
+        margin-top: -3rem; 
+    }
+    .highlight-card { border-right: none; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem; }
+    .highlight-card:last-child { border-bottom: none; }
+    .highlights-grid { gap: 0; }
+}
+
+@media (max-width: 480px) {
+    .hero-cta { 
+        flex-direction: column; 
+        width: 100%; 
+        gap: 0.75rem;
+    }
+    .hero-cta a { 
+        width: 100%; 
+        display: block; 
+    }
+    .floating-whatsapp { width: 50px; height: 50px; font-size: 1.5rem; bottom: 1rem; right: 1rem; }
+    #backToTop { bottom: 1rem; left: 1rem; }
+}
+
+/* === Rooms Bento Grid Responsive === */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* Stack into 1 column */
+        grid-template-rows: auto;    /* Auto height */
+        height: auto;
+        gap: 1rem;
+    }
+    
+    .bento-large, .bento-medium {
+        grid-row: span 1;
+        min-height: 350px; /* Give them a nice viewing height on mobile */
+    }
+    
+    .bento-large .bento-content h3 {
+        font-size: 1.8rem; /* Slightly smaller on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .bento-overlay {
+        padding: 1.5rem;
+    }
+    
+    .bento-large .bento-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .bento-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* === Gallery Bento Grid Responsive === */
+@media (max-width: 900px) {
+    .gallery-bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+        grid-auto-rows: 200px;
+        gap: 1rem;
+    }
+    .gallery-large {
+        grid-column: span 2; /* Large takes full width on tablet */
+        grid-row: span 2;
+    }
+    .gallery-wide {
+        grid-column: span 2; /* Wide takes full width on tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-bento-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+        grid-auto-rows: 220px;
+    }
+    .gallery-large,
+    .gallery-tall,
+    .gallery-wide {
+        grid-column: span 1; /* Everything is 1x1 on mobile */
+        grid-row: span 1;
+    }
+    /* Make the first image larger to anchor the mobile design */
+    .gallery-bento-item:first-child {
+        grid-row: span 2;
+    }
+}
